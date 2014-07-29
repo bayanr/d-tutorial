@@ -17,8 +17,8 @@ http://wiki.dlang.org/CodeBlocks
 
 #Hello World
 
-```
-#!d
+```d
+
 import std.stdio;
 
 void main() {
@@ -27,8 +27,8 @@ void main() {
 ```
 
 you can use writefln for formatted output.
-```
-#!d
+```d
+
 writefln("%d %d %s", 5, 3, "I refuse to use foo");
 ```
 #Types
@@ -41,8 +41,8 @@ Unsigned types are prefixed with u(uint, ulong, etc.)
 Complex types are prefixed with i(ireal, idouble, etc.)
 
 D also has type inference.
-```
-#!d
+```d
+
 auto a = 4;// int a = 4;
 auto b = 10l; //long a = 10;
 ```
@@ -51,8 +51,8 @@ http://dlang.org/function
 
 D functions are similar to C functions:
 
-```
-#!d
+```d
+
 int func(int a, double b, real c) {
     //Contents
 }
@@ -60,8 +60,8 @@ int func(int a, double b, real c) {
 
 Function and parameter types can be prefixed as well:
 
-```
-#!d
+```d
+
 ref int func(in int a, out double b, ref real c) {
     //Contents
 }
@@ -87,8 +87,8 @@ small thing to add to the above.
 
 Access control can be done like this:
 
-```
-#!d
+```d
+
 class A {
     public int x;
     private int y;
@@ -96,8 +96,8 @@ class A {
 ```
 or
 
-```
-#!d
+```d
+
 class B {
     public:
         int x;
@@ -122,8 +122,8 @@ operators (```a <= b```, ```a > b```) and equality operators
 In order to overload a normal unitary operator, override the
 opUnary template in the class. For example:
 
-```
-#!d
+```d
+
 struct A {
     int m;
 
@@ -146,13 +146,13 @@ struct B {
 Note: You cannot directly overload the ```a++``` operator,
 instead the compiler translates it to an expression in terms
 of ```++a```. For example:
-```
-#!d
+```d
+
 int b = a++;
 ```
 translates into
-```
-#!d
+```d
+
 int b = a;
 ++a;
 ```
@@ -161,8 +161,8 @@ In order to overload index operators, you need to overload the
 opIndex template in the class you want.
 
 For example:
-```
-#!d
+```d
+
 struct A {
     int m;
 
@@ -190,8 +190,8 @@ You can also override unary operators on index operator. I
 don't know when you would ever need to do something like that,
 but you can do it in any case.
 
-```
-#!d
+```d
+
 struct A {
     int m;
 
@@ -205,8 +205,8 @@ struct A {
 In order to override slice operator, you need to override the
 opSlice function.
 
-```
-#!d
+```d
+
 struct A {
     int m;
 
@@ -231,8 +231,8 @@ to overload the opBinary template. If you want to overload
 the equality operator, you need to overload opEquals and for
 comparison operators you need to overload opCmp
 
-```
-#!d
+```d
+
 Struct A {
     A opBinary(string operator)(const A rhs) if(operator == "+"){
         //Called when an object of type A is added to another 
@@ -266,8 +266,8 @@ parameters. Templates can contain classes, methods or variables.
 
 For example let's take a List template.
 
-```
-#!d
+```d
+
 template List(T) {
     class ArrayList {
         T[] l;
@@ -283,8 +283,8 @@ template List(T) {
 Now suppose I want to create an instance of an ArrayList
 containing integers;
 
-```
-#!d
+```d
+
 alias List!int.ArrayList IntList;
 IntList list = new IntList();
 ```
@@ -297,8 +297,8 @@ scope, while regular templates have their own scope.
 
 For example:
 
-```
-#!d
+```d
+
 mixin template Temp(){
     int x;
 }
@@ -315,15 +315,15 @@ int main() {
 
 #Arrays
 Arrays in D are pretty much like C++ or Java arrays.
-```
-#!d
+```d
+
 int[] a = new int[4000]; //Dynamic array
 int[20] b; //static array
 ```
 
 You can slice an array as well:
-```
-#!d
+```d
+
 a[x..y] 
 ```
 is an array containing a[x] all the way to a[y]
@@ -332,8 +332,8 @@ functions that work on whole arrays without having to worry
 about left and right. For example in the partition step of
 quicksort you need to give it the lower bound and upper bound.
 
-```
-#!d
+```d
+
 void partition(int[] arr, int lower, int upper) {
     //Partition the array between lower and upper
 }
@@ -346,8 +346,8 @@ which forces you to ensure that you are only working on the
 part of the array defined by lower and upper.
 
 With slicing you can do the following:
-```
-#!d
+```d
+
 void partition(int[] arr) {
     //Partition the entire array
     assert(arr.length == 30);
@@ -367,8 +367,8 @@ D has functional features like currying and piping, though
 not part of the language itself. They are built entirely from
 templates which are part of the standard library.
 
-```
-#!d
+```d
+
 import std.functional;
 
 int func(int a, int b){return a+b;}
@@ -385,8 +385,8 @@ for dynamic programming.
 
 As an example: trivially, factorial is written as follows 
 recursively:
-```
-#!d
+```d
+
 int factorial(int x) {
     return (x < 2) ? 1:x*factorial(x-1);
 }
@@ -397,8 +397,8 @@ void main() {
 }
 ```
 While with memoize:
-```
-#!d
+```d
+
 import std.functional;
 
 
