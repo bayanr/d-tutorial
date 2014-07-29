@@ -223,8 +223,8 @@ if you want to overload a unary operator on a slice such as
 ```d ++a[4..10]```
 
 Binary operators, unlike normal unary operators take a parameter
-which is the right hand side, so ```a+b``` translates to 
-```a.opBinary!("+")(b)```.
+which is the right hand side, so ```d a+b``` translates to 
+```d a.opBinary!("+")(b)```.
 
 If you want to overload a mathematical binary operator, you need 
 to overload the opBinary template. If you want to overload
