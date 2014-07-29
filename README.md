@@ -220,7 +220,7 @@ struct A {
 
 Use the same pattern as opIndexUnary to overload opSliceUnary
 if you want to overload a unary operator on a slice such as
-```++a[4..10]```
+```d ++a[4..10]```
 
 Binary operators, unlike normal unary operators take a parameter
 which is the right hand side, so ```a+b``` translates to 
