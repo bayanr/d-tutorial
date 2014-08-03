@@ -26,7 +26,7 @@ void main() {
 }
 ```
 
-you can use writefln for formatted output.
+You can use writefln for formatted output:
 ```d
 
 writefln("%d %d %s", 5, 3, "I refuse to use foo");
@@ -43,7 +43,7 @@ Complex types are prefixed with i(ireal, idouble, etc.)
 D also has type inference.
 ```d
 
-auto a = 4;// int a = 4;
+auto a = 4; // int a = 4;
 auto b = 10l; //long a = 10;
 ```
 #Functions
@@ -67,9 +67,11 @@ ref int func(in int a, out double b, ref real c) {
 }
 ```
 Ref implies the type is a reference type, i.e. changes inside
-the functions will change the variable outside the function.  
-in means the variable is const in the current scope  
-out variables are initialized to their default values.  
+the functions will change the variable outside the function.
+
+```in``` means the variable is const in the current scope  
+
+```out``` variables are initialized to their default values
 
 #Structs
 http://dlang.org/struct
