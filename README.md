@@ -109,7 +109,7 @@ class B {
 Whichever is your preference.
 
 Classes can also be parametrized:
-
+```d
 class A(T) {
     public T k;
 }
@@ -117,7 +117,7 @@ class A(T) {
 alias AInt = A!int;
 
 AInt i = new AInt();
-
+```
 #Operator Overloading
 
 NOTE: The list here is not complete. For a complete list of
