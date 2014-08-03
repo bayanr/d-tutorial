@@ -67,9 +67,9 @@ ref int func(in int a, out double b, ref real c) {
 }
 ```
 Ref implies the type is a reference type, i.e. changes inside
-the functions will change the variable outside the function.
-in means immutable
-out is an alias for ref(preferably used for parameters)
+the functions will change the variable outside the function.  
+in means the variable is const in the current scope  
+out variables are initialized to their default values.  
 
 #Structs
 http://dlang.org/struct
@@ -108,18 +108,30 @@ class B {
 
 Whichever is your preference.
 
+Classes can also be parametrized:
+
+class A(T) {
+    public T k;
+}
+
+alias AInt = A!int;
+
+AInt i = new AInt();
+
 #Operator Overloading
 
-There are two types of operators in D, unary which take one
-operand such as ```a++```, and binary operators which take
-two operands such as ```a + b```. There are also three types of
-unary operators: normal(```++a```), index(```a[2]```) and 
-slice(```a[5..10]```). As for binary operators, there are
-mathematical operators(```a+b```, ```a-b```), comparison
-operators (```a <= b```, ```a > b```) and equality operators
-(```a == b```, ```a != b```).
+NOTE: The list here is not complete. For a complete list of
 
-In order to overload a normal unitary operator, override the
+There are two types of operators in D, unary which take one
+operand such as ```d a++```, and binary operators which take
+two operands such as ```d a + b```. There are also three types of
+unary operators: normal(```d ++a```), index(```d a[2]```) and 
+slice(```d a[5..10]```). As for binary operators, there are
+mathematical operators(```d a+b```, ```d a-b```), comparison
+operators (```d a <= b```, ```d a > b```) and equality operators
+(```d a == b```, ```d a != b```).
+
+In order to overload a normal unary operator, override the
 opUnary template in the class. For example:
 
 ```d
@@ -143,9 +155,9 @@ struct B {
 }
 ```
 
-Note: You cannot directly overload the ```a++``` operator,
+Note: You cannot directly overload the ```d a++``` operator,
 instead the compiler translates it to an expression in terms
-of ```++a```. For example:
+of ```d ++a```. For example:
 ```d
 
 int b = a++;
@@ -285,7 +297,7 @@ containing integers;
 
 ```d
 
-alias List!int.ArrayList IntList;
+alias Intlist =  List!int.ArrayList;
 IntList list = new IntList();
 ```
 
@@ -326,7 +338,7 @@ You can slice an array as well:
 
 a[x..y] 
 ```
-is an array containing a[x] all the way to a[y]
+is an array containing a[x] all the way to a[y](not including a[y])
 The array is not copied, it is a reference so you can write
 functions that work on whole arrays without having to worry
 about left and right. For example in the partition step of
@@ -372,7 +384,7 @@ templates which are part of the standard library.
 import std.functional;
 
 int func(int a, int b){return a+b;}
-alias curry!(func, 5) func5;
+alias func5 = curry!(func, 5);
 
 int main() {
     writeln(func5(4)); //9
@@ -403,7 +415,7 @@ import std.functional;
 
 
 int fact(int x) {
-    alias memoize!(fact) factorial;
+    alias factorial = memoize!(fact);
     return (x < 2) ? 1:x*factorial(x-1);
 }
 
